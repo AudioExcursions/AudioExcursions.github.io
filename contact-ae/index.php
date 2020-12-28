@@ -1,4 +1,46 @@
-<!DOCTYPE html>
+<?php
+	// Start session.
+	session_start();
+	
+	// Set a key, checked in mailer, prevents against spammers trying to hijack the mailer.
+	$security_token = $_SESSION['security_token'] = uniqid(rand());
+	
+	if ( ! isset($_SESSION['formMessage'])) {
+		$_SESSION['formMessage'] = 'Fill in the form below to send me an email.';	
+	}
+	
+	if ( ! isset($_SESSION['formFooter'])) {
+		$_SESSION['formFooter'] = ' ';
+	}
+	
+	if ( ! isset($_SESSION['form'])) {
+		$_SESSION['form'] = array();
+	}
+	
+	function check($field, $type = '', $value = '') {
+		$string = "";
+		if (isset($_SESSION['form'][$field])) {
+			switch($type) {
+				case 'checkbox':
+					$string = 'checked="checked"';
+					break;
+				case 'radio':
+					if($_SESSION['form'][$field] === $value) {
+						$string = 'checked="checked"';
+					}
+					break;
+				case 'select':
+					if($_SESSION['form'][$field] === $value) {
+						$string = 'selected="selected"';
+					}
+					break;
+				default:
+					$string = $_SESSION['form'][$field];
+			}
+		}
+		return $string;
+	}
+?><!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 	<head>
 
@@ -13,10 +55,10 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@twitter.com/audioexcursions">
 	<meta name="twitter:creator" content="@twitter.com/audioexcursions">
-	<meta name="twitter:title" content="Audio Gallery | Audio Excursions">
+	<meta name="twitter:title" content="contact-ae">
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Audio Excursions">
-	<meta property="og:title" content="Audio Gallery | Audio Excursions">
+	<meta property="og:title" content="contact-ae">
 
 		<!-- User defined head content -->
 		
@@ -24,10 +66,10 @@
 		<!-- Meta tags -->
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-		<title>Audio Gallery | Audio Excursions</title>
+		<title>contact-ae</title>
 
 		<!-- CSS stylesheets reset -->
-	  <link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/tesla/consolidated-4.css?rwcache=630823983" />
+	  <link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/tesla/consolidated.css?rwcache=630837134" />
 		
 
 		<!-- CSS for the Foundation framework's CSS that handles the responsive columnized layout -->
@@ -43,17 +85,17 @@
 		
 
 		<!-- Base RapidWeaver javascript -->
-		<script type="text/javascript" src="../rw_common/themes/tesla/javascript.js?rwcache=630823983"></script>
+		<script type="text/javascript" src="../rw_common/themes/tesla/javascript.js?rwcache=630837134"></script>
 
 		<!-- jQuery 1.8 is included in the theme internally -->
-	  <script src="../rw_common/themes/tesla/js/jquery.min.js?rwcache=630823983"></script>
+	  <script src="../rw_common/themes/tesla/js/jquery.min.js?rwcache=630837134"></script>
 
 	  <!-- Theme specific javascript, along with jQuery Easing and a few other elements -->
-	  <script src="../rw_common/themes/tesla/js/elixir.js?rwcache=630823983"></script>
+	  <script src="../rw_common/themes/tesla/js/elixir.js?rwcache=630837134"></script>
 
 		<!-- Style variations -->
-		<script src="../rw_common/themes/tesla/js/fitvids.js?rwcache=630823983"></script>
-		<script src="../rw_common/themes/tesla/js/sidebar/sidebar_hidden.js?rwcache=630823983"></script>
+		<script src="../rw_common/themes/tesla/js/fitvids.js?rwcache=630837134"></script>
+		<script src="../rw_common/themes/tesla/js/sidebar/sidebar_left.js?rwcache=630837134"></script>
 		
 
 		<!-- User defined styles -->
@@ -65,20 +107,6 @@ body { background-image: url(../resources/47398.jpg); }</style>
 
 		<!-- Plugin injected code -->
 		
-		<link rel='stylesheet' type='text/css' media='screen' href='../rw_common/plugins/collage/collage_common.css?rwcache=630823983' />
-		<script type='text/javascript' charset='utf-8'>
-			var yhBlankImg='';
-			var yhPngFix='';
-		</script>
-		<!--[if lte IE 6]>
-			<script type='text/javascript' charset='utf-8'>
-				var yhBlankImg='../rw_common/plugins/collage/blank.gif';
-				var yhPngFix='../rw_common/plugins/collage/iepngfix.htc';
-			</script>
-		<![endif]-->
-		<script type='text/javascript' src='../rw_common/plugins/collage/mootools-1.2.3.js?rwcache=630823983'></script>
-		<script type='text/javascript' src='../rw_common/plugins/collage/collage.js?rwcache=630823983'></script>
-
 
 
 	</head>
@@ -115,7 +143,7 @@ body { background-image: url(../resources/47398.jpg); }</style>
 				<div id="navigation_bar">
 					<div class="row site_width">
 						<div class="large-12 columns">
-							<nav id="top_navigation"><ul><li><a href="../" rel="">Reviews</a></li><li><a href="../contact-form/" rel="">Contact AE</a></li><li><a href="../styled/" rel="">About AE</a></li><li><a href="../page/" rel="">Meet Photos</a></li><li><a href="./" rel="" id="current">Audio Gallery</a></li></ul></nav>
+							<nav id="top_navigation"><ul><li><a href="../" rel="">Reviews</a></li><li><a href="./" rel="" id="current">Contact AE</a></li><li><a href="../about-ae/" rel="">About AE</a></li><li><a href="../meet-photos/" rel="">Meet Photos</a></li><li><a href="../audio-gallery/" rel="">Audio Gallery</a></li></ul></nav>
 						</div>
 					</div>
 				</div>
@@ -136,26 +164,43 @@ body { background-image: url(../resources/47398.jpg); }</style>
 			<i id="mobile_navigation_toggle_icon" class="fa fa-bars"></i>
 		</div>
 		<nav id="mobile_navigation">
-			<ul><li><a href="../" rel="">Reviews</a></li><li><a href="../contact-form/" rel="">Contact AE</a></li><li><a href="../styled/" rel="">About AE</a></li><li><a href="../page/" rel="">Meet Photos</a></li><li><a href="./" rel="" id="current">Audio Gallery</a></li></ul>
+			<ul><li><a href="../" rel="">Reviews</a></li><li><a href="./" rel="" id="current">Contact AE</a></li><li><a href="../about-ae/" rel="">About AE</a></li><li><a href="../meet-photos/" rel="">Meet Photos</a></li><li><a href="../audio-gallery/" rel="">Audio Gallery</a></li></ul>
 		</nav>
 
 		<!-- Main Content area and sidebar -->
 		<div class="row site_width" id="container">
 			<section id="content"class="large-8 columns">
 				
-<!-- Start of Collage 1168 Content -->
-<ul id='collage_page4' class='collage'>
-</ul>
-<script type='text/javascript'>
-var collage_page4 = new YHCollage (
-"collage_page4", 0, 0, 1, 5, 15, 0, 0, "#333333", 15, "Helvetica, Arial, Verdana, sans-serif", 0, 10, 0,
-"#666666", 8, "Helvetica, Arial, Verdana, sans-serif",  0, 33, 1, 1, 2468, "../rw_common/plugins/collage/closeWidget.png", "../rw_common/plugins/collage/controlNext.png",
-"../rw_common/plugins/collage/controlPause.png", "../rw_common/plugins/collage/controlPlay.png", "../rw_common/plugins/collage/controlPrev.png",  "../rw_common/plugins/collage/controlBox.png",  "../rw_common/plugins/collage/loading.gif",
-0, "#000000", 0.5000, "#000000",
-0, 175, 175, "#FFFFFF", 5, "#CCCCCC", 10, "#000000", 14, "(null)"
-);
-</script>
-<!-- Collage 1168 End of Content -->
+<div class="message-text"><?php echo $_SESSION['formMessage']; unset($_SESSION['formMessage']); ?></div><br />
+
+<form class="rw-contact-form" action="./files/mailer.php" method="post" enctype="multipart/form-data">
+	 <div>
+		<label>Your Name</label> *<br />
+		<input class="form-input-field" type="text" value="<?php echo check('element0'); ?>" name="form[element0]" size="40"/><br /><br />
+
+		<label>Your Email</label> *<br />
+		<input class="form-input-field" type="text" value="<?php echo check('element1'); ?>" name="form[element1]" size="40"/><br /><br />
+
+		<label>Subject</label> *<br />
+		<input class="form-input-field" type="text" value="<?php echo check('element2'); ?>" name="form[element2]" size="40"/><br /><br />
+
+		<label>Message</label> *<br />
+		<textarea class="form-input-field" name="form[element3]" rows="8" cols="38"><?php echo check('element3'); ?></textarea><br /><br />
+
+		<div style="display: none;">
+			<label>Spam Protection: Please don't fill this in:</label>
+			<textarea name="comment" rows="1" cols="1"></textarea>
+		</div>
+		<input type="hidden" name="form_token" value="<?php echo $security_token; ?>" />
+		
+		<input class="form-input-button" type="submit" name="submitButton" value="Submit" />
+	</div>
+</form>
+
+<br />
+<div class="form-footer"><?php echo $_SESSION['formFooter']; unset($_SESSION['formFooter']); ?></div><br />
+
+<?php unset($_SESSION['form']); ?>
 
 			</section>
 			<aside id="sidebar" class="large-4 columns">
@@ -172,7 +217,7 @@ var collage_page4 = new YHCollage (
 		<footer class="row site_width">
 			<div id="footer_content" class="large-12 columns">
 				<div id="breadcrumb_container">
-					<i class="fa fa-folder-open-o"></i> <span id="breadcrumb"><ul><li><a href="../">Reviews</a>&nbsp;>&nbsp;</li><li><a href="./">Audio Gallery</a>&nbsp;>&nbsp;</li></ul></span>
+					<i class="fa fa-folder-open-o"></i> <span id="breadcrumb"><ul><li><a href="../">Reviews</a>&nbsp;>&nbsp;</li><li><a href="./">Contact AE</a>&nbsp;>&nbsp;</li></ul></span>
 				</div>
 				&copy; 2020 Audio Excursions <a href="#" id="rw_email_contact">Contact Me</a><script type="text/javascript">var _rwObsfuscatedHref0 = "mai";var _rwObsfuscatedHref1 = "lto";var _rwObsfuscatedHref2 = ":ae";var _rwObsfuscatedHref3 = "mor";var _rwObsfuscatedHref4 = "row";var _rwObsfuscatedHref5 = "@me";var _rwObsfuscatedHref6 = ".co";var _rwObsfuscatedHref7 = "m";var _rwObsfuscatedHref = _rwObsfuscatedHref0+_rwObsfuscatedHref1+_rwObsfuscatedHref2+_rwObsfuscatedHref3+_rwObsfuscatedHref4+_rwObsfuscatedHref5+_rwObsfuscatedHref6+_rwObsfuscatedHref7; document.getElementById("rw_email_contact").href = _rwObsfuscatedHref;</script>
 			</div>
