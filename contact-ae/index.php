@@ -55,10 +55,10 @@
 	<meta name="twitter:card" content="summary">
 	<meta name="twitter:site" content="@twitter.com/audioexcursions">
 	<meta name="twitter:creator" content="@twitter.com/audioexcursions">
-	<meta name="twitter:title" content="contact-ae">
+	<meta name="twitter:title" content="Contact AE | Audio Excursions">
 	<meta property="og:type" content="website">
 	<meta property="og:site_name" content="Audio Excursions">
-	<meta property="og:title" content="contact-ae">
+	<meta property="og:title" content="Contact AE | Audio Excursions">
 
 		<!-- User defined head content -->
 		
@@ -66,10 +66,10 @@
 		<!-- Meta tags -->
 	  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 
-		<title>contact-ae</title>
+		<title>Contact AE | Audio Excursions</title>
 
 		<!-- CSS stylesheets reset -->
-	  <link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/tesla/consolidated.css?rwcache=630837332" />
+	  <link rel="stylesheet" type="text/css" media="all" href="../rw_common/themes/tesla/consolidated.css?rwcache=630900443" />
 		
 
 		<!-- CSS for the Foundation framework's CSS that handles the responsive columnized layout -->
@@ -85,17 +85,17 @@
 		
 
 		<!-- Base RapidWeaver javascript -->
-		<script type="text/javascript" src="../rw_common/themes/tesla/javascript.js?rwcache=630837332"></script>
+		<script type="text/javascript" src="../rw_common/themes/tesla/javascript.js?rwcache=630900443"></script>
 
 		<!-- jQuery 1.8 is included in the theme internally -->
-	  <script src="../rw_common/themes/tesla/js/jquery.min.js?rwcache=630837332"></script>
+	  <script src="../rw_common/themes/tesla/js/jquery.min.js?rwcache=630900443"></script>
 
 	  <!-- Theme specific javascript, along with jQuery Easing and a few other elements -->
-	  <script src="../rw_common/themes/tesla/js/elixir.js?rwcache=630837332"></script>
+	  <script src="../rw_common/themes/tesla/js/elixir.js?rwcache=630900443"></script>
 
 		<!-- Style variations -->
-		<script src="../rw_common/themes/tesla/js/fitvids.js?rwcache=630837332"></script>
-		<script src="../rw_common/themes/tesla/js/sidebar/sidebar_left.js?rwcache=630837332"></script>
+		<script src="../rw_common/themes/tesla/js/fitvids.js?rwcache=630900443"></script>
+		<script src="../rw_common/themes/tesla/js/sidebar/sidebar_left.js?rwcache=630900443"></script>
 		
 
 		<!-- User defined styles -->
