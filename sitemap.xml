@@ -1,18 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>(null)</loc>
+		<loc>https://audioexcursions.github.io/index.html</loc>
 	</url>
 	<url>
-		<loc>(null)</loc>
+		<loc>https://audioexcursions.github.io/files/archive-december-2020.html</loc>
 	</url>
 	<url>
-		<loc>(null)</loc>
+		<loc>https://audioexcursions.github.io/contact-ae/index.php</loc>
 	</url>
 	<url>
-		<loc>(null)</loc>
+		<loc>https://audioexcursions.github.io/about-ae/index.html</loc>
 	</url>
 	<url>
-		<loc>(null)</loc>
+		<loc>https://audioexcursions.github.io/meet-photos/index.html</loc>
+	</url>
+	<url>
+		<loc>https://audioexcursions.github.io/audio-gallery/index.html</loc>
 	</url>
 </urlset>
